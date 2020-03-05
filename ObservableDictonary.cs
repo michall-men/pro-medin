@@ -1,4 +1,5 @@
-﻿using System;
+﻿//taken from https://gist.github.com/kzu/cfe3cb6e4fe3efea6d24
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
