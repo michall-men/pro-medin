@@ -1,0 +1,97 @@
+﻿<UserControl x:Class="UI.NewAccount"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI"
+             mc:Ignorable="d" 
+             >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="Lable2" TargetType="Label" BasedOn="{StaticResource LabelsStyle}">
+                <Setter Property="FontSize" Value="20"/>
+                <Setter Property="VerticalAlignment" Value="Center"/>
+            </Style>
+            <Style x:Key="Text2" TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="MinWidth" Value="80"/>
+                <Setter Property="Background" Value="Transparent"/>
+
+                <Setter Property="Height" Value="27"/>
+                <Setter Property="Text" Value="{Binding Mode=OneWay}"/>
+            </Style>
+            <Style x:Key="combo2" TargetType="ComboBox" BasedOn="{StaticResource ComboboxStyle}">
+                <Setter Property="FontSize" Value="18"/>
+                <Setter Property="Background" Value="#B2FFFFFF"/>
+                <Setter Property="MinWidth" Value="83"/>
+                <Setter Property="Height" Value="28"/>
+                <Setter Property="SelectedItem" Value="{Binding Mode=OneWay}"/>
+            </Style>
+         </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+             
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+
+        </Grid.RowDefinitions>
+        <TextBlock Text="Simple details:" Style="{StaticResource TextBlockStyle}" VerticalAlignment="Stretch" FontSize="24" Grid.Row="0"      />
+        <WrapPanel HorizontalAlignment="Stretch" Grid.Row="1" >
+            <StackPanel Style="{StaticResource StackpannelStyle}" Orientation="Horizontal"    >
+            <Label Content="name:  " Style="{StaticResource Lable2}"  />
+            <TextBox  Text="{Binding Path=Name,Mode=OneWayToSource}"  Style="{StaticResource Text2}"  />
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource StackpannelStyle}" Orientation="Horizontal"     >
+            <Label Content=" Birth year:  " Style="{StaticResource Lable2}"  />
+                <ComboBox  Style="{StaticResource combo2}" Name="BirthYear" SelectedValue="{Binding Path=YearOfbirth,Mode=OneWayToSource}" />
+        </StackPanel>
+        <StackPanel Style="{StaticResource StackpannelStyle}" Orientation="Horizontal"   >
+            <Label Content=" status:   " Style="{StaticResource Lable2}"  />
+                <ComboBox Name="statusf" Style="{StaticResource combo2}" SelectedItem="{Binding Path=familyStatus,Mode=OneWayToSource}"  />
+        </StackPanel>
+        <StackPanel Style="{StaticResource StackpannelStyle}" Orientation="Horizontal"     >
+            <Label Content=" gender :   " Style="{StaticResource Lable2}"  />
+                <ComboBox Name="gender" Style="{StaticResource combo2}" SelectedItem="{Binding Path=gender,Mode=OneWayToSource}" />
+</StackPanel></WrapPanel>
+
+        <TextBlock Text="Medicinal details:" Style="{StaticResource TextBlockStyle}" FontSize="24" Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2" />
+      
+        <WrapPanel Grid.Row="3">
+        <StackPanel Style="{StaticResource StackpannelStyle}" Orientation="Horizontal" >
+            <Label Content="Heigh:  " Style="{StaticResource Lable2}"  />
+                <TextBox Name="hiegBox" Text="{Binding Path=Heigh,Mode=OneWayToSource,UpdateSourceTrigger=LostFocus}" Style="{StaticResource Text2}" />
+        </StackPanel>
+        <StackPanel Style="{StaticResource StackpannelStyle}" Orientation="Horizontal"   >
+            <Label Content=" inr range:  " Style="{StaticResource Lable2}"   />
+                <TextBox Name="from" Style="{StaticResource Text2}" Text="{Binding Path=StartOfRange,Mode=OneWayToSource,UpdateSourceTrigger=LostFocus}"  />
+                <Label Content="-" Style="{StaticResource Lable2}"   />
+                <TextBox Name="to" Style="{StaticResource Text2}" Text="{Binding Path=EndOfRange,Mode=OneWayToSource,UpdateSourceTrigger=LostFocus }"  />
+        </StackPanel>
+
+        <StackPanel Style="{StaticResource StackpannelStyle}" Orientation="Horizontal"  >
+            <Label Content="Wich day you test inr regulary?  " Style="{StaticResource Lable2}"  />
+                <ComboBox Name="testDay" Style="{StaticResource combo2}" SelectedValue="{Binding Path=TestDay,Mode=OneWayToSource}" />
+        </StackPanel></WrapPanel>
+        
+        <StackPanel Style="{StaticResource StackpannelStyle}" Orientation="Horizontal" Grid.Row="4" HorizontalAlignment="Center" >
+            <Label Content="choose password:  " Style="{StaticResource Lable2}" />
+            <TextBox Name="Pass" Style="{StaticResource Text2}" MinWidth="100" Text="{Binding Path=Password,Mode=OneWayToSource}"  />
+      </StackPanel>
+
+        <Button Name="ApplayButton" Grid.Row="5" 
+                Style="{StaticResource ApllayButton}"   Click="ApplayButton_Click"  Grid.ColumnSpan="2"  />
+
+
+    </Grid>
+</UserControl>

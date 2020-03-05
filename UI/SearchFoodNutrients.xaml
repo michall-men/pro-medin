@@ -1,0 +1,59 @@
+﻿<UserControl x:Class="UI.SearchFoodNutrients"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+    <ResourceDictionary>
+        <ResourceDictionary.MergedDictionaries>
+            <ResourceDictionary Source="Style.xaml" />
+        </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="ListFoodToChose" TargetType="ComboBox">
+                <Setter Property="ItemsSource" Value="{Binding FoodCollectionObserver}"/>
+                <Setter Property="SelectedItem" Value="{Binding name}"/>
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" Style="{StaticResource ResourceKey=StackpannelStyle}"    >
+                                <Image  Width="20" Height="20" Source="{Binding ImageUri}" HorizontalAlignment="Left"/>
+                                <Label Name="FoodName" Content="{Binding name}" Style="{StaticResource ResourceKey=LabelsStyle}" FontSize="20" />
+                            </StackPanel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+
+            </Style>
+            <Style x:Key="ListOfNutrient" TargetType="ListBox">
+
+                <Setter Property="ItemsSource" Value="{Binding NutrientsObserver}"/>
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="{Binding Key}" Style="{StaticResource LabelsStyle}" FontSize="24" />
+                                <Label Content="{Binding Value}" Style="{StaticResource LabelsStyle}" FontSize="24"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter></Style>
+
+        </ResourceDictionary>
+  </UserControl.Resources>
+    <Grid>
+        <TextBlock Text="search food nutrients" FontSize="28" VerticalAlignment="Top"
+                   Style="{StaticResource TextBlockStyle}"/>
+        <StackPanel VerticalAlignment="Center">
+         <!-- <TextBox   Style="{StaticResource TextBoxStyle}" Text="insert food name" TextChanged="NewFood_TextChanged"/>
+            <Label Style="{StaticResource LabelsStyle}" Content="OR" HorizontalAlignment="Center"/> -->
+            <ComboBox  Name="comboBoxFoodObserver" MaxWidth="200"  Style="{StaticResource ListFoodToChose}"  
+                       SelectionChanged="ComboBoxFoodObserver_Selected"/>
+
+            <TextBlock Style="{StaticResource TextBlockStyle}" Text="food nutrients"/>
+            <TextBlock Name="r" Style="{StaticResource TextBlockStyle}" />
+            <ListBox Name="NutList" Style="{StaticResource ListOfNutrient}" MaxHeight="200"/>
+        </StackPanel>
+    </Grid>
+</UserControl>

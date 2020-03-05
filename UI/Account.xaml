@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="UI.Account"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI"
+             mc:Ignorable="d" 
+             d:DesignHeight="500" d:DesignWidth="520">
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="ListOfTests" TargetType="ListBox">
+                <Setter Property="MinHeight" Value="200"/>
+                <Setter Property="ItemsSource" Value="{Binding TestsObserver}"/>
+                <Setter Property="ItemTemplate">
+                    <Setter.Value>
+                        <DataTemplate>
+                            <StackPanel Orientation="Horizontal" >
+                                <Label Content="Dosage: " Style="{StaticResource LabelsStyle}" FontSize="18"  />
+                                <Label Content="{Binding Dosage}" Style="{StaticResource LabelsStyle}" FontSize="18" />
+                                <Label Content="Inr: " Style="{StaticResource LabelsStyle}" FontSize="18"  />
+                                <Label Content="{Binding Inr}" Style="{StaticResource LabelsStyle}" FontSize="18"/>
+                                <Slider Value="{Binding Inr, Mode=OneWay}" Width="45" IsEnabled="False" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <!--מטרה: חלק 1  ו5 של הפרויקט. עדכון פרטי משתמש וצפיה בנתונים בצורת כרטיסיות-->
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="150*"/>
+            <RowDefinition Height="40*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="150*"/>
+            
+            <ColumnDefinition Width="150*"/>
+        </Grid.ColumnDefinitions>
+        <Frame  Grid.Column="2" Grid.Row="0" Name="image">
+            <Frame.Background>
+                <ImageBrush ImageSource="{Binding Path=ImageUri}"/>
+            </Frame.Background>
+        </Frame>
+        <StackPanel Grid.Row="1" Grid.Column="2">
+            <Label Name="detailse" Content="{Binding}"   Style="{StaticResource  LabelsStyle}"/>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Day of test:  " Style="{StaticResource LabelsStyle}" />
+                <ComboBox Name="testDay" Style="{StaticResource ComboboxStyle}" SelectedValue="{Binding Path=TestDay,Mode=TwoWay}" MinWidth="60"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Heigh:  " Style="{StaticResource LabelsStyle}"  />
+                <TextBox Name="hiegBox" Text="{Binding Path=Heigh,Mode=TwoWay}" Style="{StaticResource TextBoxStyle}" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="Status: " Style="{StaticResource LabelsStyle}"  />
+                <ComboBox Name="statusf" Style="{StaticResource ComboboxStyle}" SelectedItem="{Binding Path=familyStatus,Mode=TwoWay}" MinWidth="60" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <Label Content="change image, to uri: " Style="{StaticResource LabelsStyle}"  />
+                <TextBox Name="UpdateImage" Text="{Binding Path=ImageUri,Mode=TwoWay}" Style="{StaticResource TextBoxStyle}"  MinWidth="70" />
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Row="0" Grid.Column="0" Grid.RowSpan="2" Style="{StaticResource StackpannelStyle}">
+            <TextBlock Text=" your last results:" Style="{StaticResource TextBlockStyle}" FontSize="18" TextWrapping="Wrap"  />
+            <ListBox Name="List1"  AllowDrop="False" Style="{StaticResource ListOfTests}" Background="#00000000" BorderBrush="#00000000" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" />
+            <Label Name="LastW" FontSize="18"  Style="{StaticResource LabelsStyle}"/>
+
+        </StackPanel>
+       <!-- <Button Content="Delete your user" Grid.Row="2" Grid.Column="0" Click="Delete_Click" Style="{StaticResource desk}"/>-->
+        <Button Content="Update your user" Grid.Row="2" Grid.Column="1" Click="Update_Click" Style="{StaticResource desk}"/>
+    </Grid>
+</UserControl>

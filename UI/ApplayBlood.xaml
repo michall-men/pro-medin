@@ -1,0 +1,86 @@
+﻿<UserControl x:Class="UI.ApplayBlood"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI"
+             mc:Ignorable="d" d:DesignHeight="520" Width="520" 
+           >
+    <!--מטרה: להכניס נתונים שבועיים למשתמש -->
+    <!--להוסיף: תרופות נוספות אם נלקחו, תחושה כללית-כמו עייפות, התקררות-וירוס,זיהום,כאב ראש או כאב בטן וכו-->
+
+
+    <UserControl.Resources>
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="spesificTextblock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+                <Setter Property="FontSize" Value="24"/>
+            </Style>
+            <Style x:Key="spesificTextbox" TargetType="TextBox" BasedOn="{StaticResource TextBoxStyle}">
+                <Setter Property="FontSize" Value="25"/>
+                <Setter Property="MinWidth" Value="165"/>
+            </Style>
+            
+        </ResourceDictionary>
+    </UserControl.Resources>
+
+    <Grid Name="TestGrid" Background="#00000000">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <WrapPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Stretch"   >
+          
+            <StackPanel  Style="{StaticResource StackpannelStyle}">
+                     <TextBlock Text="insert last dosage  "  x:Name="dosage"  
+                       Style="{StaticResource spesificTextblock}"   />
+                <StackPanel Style="{StaticResource StackpannelStyle}" Orientation="Horizontal">
+                    <TextBox  x:Name="dosagInput" 
+                        Style="{StaticResource spesificTextbox}"   />
+                    <Image  Source="icons\pill.png" HorizontalAlignment="Right" Height="60" x:Name="pilImg" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel  Name="blood" Style="{StaticResource StackpannelStyle}"
+                         HorizontalAlignment="Right" 
+                         Width="{Binding ElementName=dosage,Path=Width}">
+
+                <TextBlock Text="insert inr result" Name="ansure"
+                      Style="{StaticResource spesificTextblock}"/>
+
+                <StackPanel  Style="{StaticResource StackpannelStyle}" Orientation="Horizontal">
+                    <TextBox  Name="intAnsure" Style="{StaticResource spesificTextbox}"
+                              Text="{Binding Path=Inr,Mode=OneWayToSource}"/>
+
+                    <Image Height="60" Source="icons\blood-drop.png" HorizontalAlignment="Right"/>
+
+                    <!--Width="{Binding Source=ansure,Path=Width}" -->
+                </StackPanel>
+            </StackPanel>
+        </WrapPanel>
+        <StackPanel  Name="weigt" Style="{StaticResource StackpannelStyle}" Grid.Row="2"
+                         HorizontalAlignment="Center">
+            <TextBlock Text="insert last weight" x:Name="weight" 
+                       Style="{StaticResource spesificTextblock}"/>
+            <StackPanel  Style="{StaticResource StackpannelStyle}" Orientation="Horizontal">
+                <TextBox  Style="{StaticResource spesificTextbox}" 
+                           x:Name="weighInput" />
+                <Image Height="60" Source="icons\weight.png" HorizontalAlignment="Right"/>
+
+            </StackPanel>
+        </StackPanel>
+
+
+        <Button x:Name="Done"  Grid.Row="3"
+                     Click="Done_Click"  Style="{StaticResource ApllayButton}" />
+        <Label Name="ImSoTierd" HorizontalAlignment="Center" Style="{StaticResource LabelsStyle}" Grid.Row="4"/>
+
+    </Grid>
+</UserControl>

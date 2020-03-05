@@ -1,0 +1,47 @@
+﻿<UserControl x:Class="UI.LogIn"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UI"
+             mc:Ignorable="d" 
+          MinHeight="450" MinWidth="450"  >
+    <UserControl.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Style.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <Style x:Key="PaswordBoxStyle"  TargetType="PasswordBox" >
+             <Setter Property="Background" Value="#B2FFFFFF"/>
+            <Setter Property="Foreground" Value="#FF084B29"/>
+            <Setter Property="BorderBrush" Value="#FF084B29"/>
+            <Setter Property="FontFamily" Value="Segoe Print"/>
+          
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="BorderThickness" Value="0,0,0,3"/>
+
+            <Setter Property="MinWidth" Value="60"/>
+            </Style>
+        </ResourceDictionary>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="51*"/>
+        </Grid.RowDefinitions>
+        
+        <StackPanel Grid.Row="0">
+        <Label Content="User Name"   Height="48"  Width="167" FontSize="24"   Style="{StaticResource LabelsStyle}"  />
+        <TextBox Name="UserName" Style="{StaticResource TextBoxStyle}"  TextWrapping="Wrap"   Height="64" Width="304"  FontSize="20"/>
+      </StackPanel>
+        
+        <StackPanel Grid.Row="1">
+        <Label Content="Password" Height="48"  Width="167" FontSize="24" Style="{StaticResource LabelsStyle}"/>
+            <PasswordBox Name="pwd" Style="{StaticResource PaswordBoxStyle}" HorizontalContentAlignment="Center" Height="64"  Width="304"  FontSize="20"/>
+</StackPanel>
+      
+        <Button Name="LOGIN" HorizontalAlignment="Stretch" Click="Button_Click" Style="{StaticResource ApllayButton}" Grid.Row="2"  />
+
+    </Grid>
+</UserControl>
