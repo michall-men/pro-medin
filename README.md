@@ -4,3 +4,5 @@ The user input is personal general information, especially his desired measureme
 Also the user can input for every meal every day- his feeling, place, part in the day and chose the food he ate from a list.
 The system analyse the daily and weekly meals data, to learn the effects of food and his nutrients on the medicine.
  
+Pictures: https://pin.it/7HImqQO
+          https://pin.it/7tEALWW
